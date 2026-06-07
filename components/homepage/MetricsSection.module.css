@@ -1,0 +1,255 @@
+/* MetricsSection.module.css — Premium */
+
+.section {
+  background: var(--white);
+  padding: 100px 80px;
+}
+
+.sectionHead {
+  margin-bottom: 56px;
+}
+
+.sectionTitle {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.5vw, 50px);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-top: 16px;
+}
+
+.sectionTitle em {
+  color: var(--pur);
+  font-style: italic;
+}
+
+/* ── Metrics grid ── */
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--bdr);
+  margin-bottom: 80px;
+}
+
+.metricCard {
+  padding: 40px 36px 32px;
+  border-right: 1px solid var(--bdr);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: background 0.2s ease;
+}
+
+.metricCard:last-child {
+  border-right: none;
+}
+
+.metricCard:hover {
+  background: var(--offwhite);
+}
+
+/* Ghost index number top-right */
+.metricIndex {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--bdr);
+  letter-spacing: 0.08em;
+}
+
+/* The big number */
+.metricNum {
+  font-family: var(--serif);
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--pur);
+  line-height: 1;
+  letter-spacing: -3px;
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+}
+
+.metricSuffix {
+  font-size: 36px;
+  color: var(--gold);
+  letter-spacing: -1px;
+  margin-left: 2px;
+}
+
+.metricLabel {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+  flex: 1;
+}
+
+/* Subtle animated bottom bar on hover */
+.metricBar {
+  height: 2px;
+  background: var(--bdr);
+  border-radius: 1px;
+  overflow: hidden;
+  margin-top: auto;
+}
+
+.metricBarFill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(to right, var(--pur), var(--gold));
+  border-radius: 1px;
+  transition: width 0.4s ease;
+}
+
+.metricCard:hover .metricBarFill {
+  width: 100%;
+}
+
+/* ── Who We Serve ── */
+.whoServeSection {
+  border-top: 1px solid var(--bdr);
+  padding-top: 64px;
+}
+
+.whoServeHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.whoServeSub {
+  font-size: 14px;
+  color: var(--muted);
+  max-width: 40ch;
+  text-align: right;
+}
+
+.clientGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.clientCard {
+  position: relative;
+  background: var(--purL);
+  border: 1px solid rgba(69, 0, 101, 0.12);
+  border-radius: 4px;
+  padding: 36px 16px 24px;
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  cursor: default;
+}
+
+.clientCard:hover {
+  transform: translateY(-3px);
+  border-color: rgba(69, 0, 101, 0.3);
+}
+
+.clientAccent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.clientEmoji {
+  font-size: 28px;
+  margin-bottom: 12px;
+  display: block;
+  line-height: 1;
+}
+
+.clientTitle {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--pur);
+  margin-bottom: 4px;
+}
+
+.clientSubtitle {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1199px) {
+  .section {
+    padding: 80px 48px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .section {
+    padding: 72px 40px;
+  }
+
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .metricCard:nth-child(2) {
+    border-right: none;
+  }
+
+  .metricCard:nth-child(3),
+  .metricCard:nth-child(4) {
+    border-top: 1px solid var(--bdr);
+  }
+
+  .metricCard:nth-child(4) {
+    border-right: none;
+  }
+
+  .clientGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .whoServeSub {
+    text-align: left;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 56px 24px;
+  }
+
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .metricCard {
+    padding: 28px 20px 24px;
+  }
+
+  .metricNum {
+    font-size: 48px;
+  }
+
+  .metricSuffix {
+    font-size: 28px;
+  }
+
+  .clientGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .whoServeHead {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

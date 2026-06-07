@@ -1,0 +1,253 @@
+/* OffersSection.module.css — Premium */
+
+.section {
+  background: var(--offwhite);
+  padding: 100px 80px;
+}
+
+/* ── Section head: two-column layout ── */
+.sectionHead {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: end;
+  margin-bottom: 64px;
+}
+
+.sectionTitle {
+  font-family: var(--serif);
+  font-size: clamp(30px, 3.5vw, 52px);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-top: 16px;
+}
+
+.sectionTitle em {
+  color: var(--pur);
+  font-style: italic;
+}
+
+.sectionSub {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 44ch;
+}
+
+/* ── Grid ── */
+.offersGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--bdr);
+}
+
+/* ── Card ── */
+.offerCard {
+  position: relative;
+  background: var(--white);
+  padding: 56px 48px 48px;
+  overflow: hidden;
+  border-right: 1px solid var(--bdr);
+  display: flex;
+  flex-direction: column;
+  transition: background 0.2s ease;
+}
+
+.offerCard:last-child {
+  border-right: none;
+}
+
+.offerCard:hover {
+  background: #fdfcff;
+}
+
+/* Highlighted left card */
+.offerCardPrimary {
+  background: var(--white);
+}
+
+/* Top accent bar */
+.offerAccent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.accent-gold {
+  background: var(--gold);
+}
+
+.accent-purple {
+  background: var(--pur);
+}
+
+/* Ghost number */
+.offerNum {
+  font-family: var(--serif);
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--purL);
+  line-height: 1;
+  margin-bottom: 20px;
+  letter-spacing: -4px;
+  user-select: none;
+}
+
+/* Tag pill */
+.offerTag {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 1px;
+  display: inline-block;
+  margin-bottom: 24px;
+  width: fit-content;
+}
+
+.tag-gold {
+  background: rgba(200, 146, 58, 0.1);
+  color: var(--gold-deep);
+  border: 1px solid rgba(200, 146, 58, 0.25);
+}
+
+.tag-purple {
+  background: rgba(69, 0, 101, 0.07);
+  color: var(--pur);
+  border: 1px solid rgba(69, 0, 101, 0.15);
+}
+
+/* Card heading */
+.offerCardTitle {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 16px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Card body copy */
+.offerCardDesc {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+
+/* Feature list */
+.offerFeatures {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+  flex: 1;
+}
+
+.offerFeatures li {
+  font-size: 14px;
+  color: var(--ink-2);
+  padding-left: 22px;
+  position: relative;
+  line-height: 1.55;
+}
+
+.offerFeatures li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 8px;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* CTA link */
+.offerLink {
+  color: var(--pur);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(69, 0, 101, 0.3);
+  padding-bottom: 3px;
+  transition: gap 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  margin-top: auto;
+  width: fit-content;
+}
+
+.offerLink:hover {
+  gap: 18px;
+  border-color: var(--pur);
+}
+
+.offerLinkArrow {
+  transition: transform 0.2s ease;
+}
+
+.offerLink:hover .offerLinkArrow {
+  transform: translateX(4px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1199px) {
+  .section {
+    padding: 80px 48px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .section {
+    padding: 72px 40px;
+  }
+
+  .sectionHead {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .sectionSub {
+    max-width: 100%;
+  }
+
+  .offersGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .offerCard {
+    padding: 40px 32px;
+    border-right: none;
+    border-bottom: 1px solid var(--bdr);
+  }
+
+  .offerCard:last-child {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 56px 24px;
+  }
+
+  .offerCard {
+    padding: 32px 24px;
+  }
+
+  .offerNum {
+    font-size: 56px;
+  }
+}

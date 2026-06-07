@@ -1,0 +1,301 @@
+/* components/layout/Header.module.css */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(69, 0, 101, 0.05);
+  transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+}
+
+/* Subtle elevation shadow on scroll */
+.header.scrolled {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 20px -5px rgba(26, 0, 40, 0.05), 0 1px 0 rgba(69, 0, 101, 0.06);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  padding: 10px 48px;
+  gap: 40px;
+  max-width: 1240px;
+  /* Aligns flawlessly with your standard design system layout */
+  margin: 0 auto;
+  transition: padding 0.3s ease;
+}
+
+.scrolled .inner {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+/* Logo */
+.logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.logoImg {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  /* Removed old dark background filters so natural color shines on white layout */
+  transition: transform 0.2s ease;
+}
+
+.logo:hover .logoImg {
+  transform: scale(1.02);
+}
+
+/* Desktop nav */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.navLink {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--mid);
+  /* Dark corporate tone over clean white canvas */
+  padding: 8px 16px;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+/* Elegant line transition indicator */
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+  right: 16px;
+  height: 2px;
+  background: var(--pur);
+  transform: scaleX(0);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: right;
+}
+
+.navLink:hover {
+  color: var(--pur);
+}
+
+.navLink:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Premium Primary Button */
+.cta {
+  flex-shrink: 0;
+}
+
+.ctaBtn {
+  background: var(--pur);
+  color: var(--white);
+  padding: 10px 24px;
+  border-radius: 999px;
+  /* Premium pill dynamic shapes */
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.ctaBtn:hover {
+  background: var(--pur2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(92, 0, 133, 0.15);
+}
+
+/* Premium Animated Hamburger Button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--ink);
+  margin-left: auto;
+  flex-shrink: 0;
+  z-index: 210;
+}
+
+.hamburgerLine {
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+
+/* Transforms into an elegant close vector on click */
+.hamburgerActive .hamburgerLine:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburgerActive .hamburgerLine:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerActive .hamburgerLine:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── PREMIUM MOBILE DRAWER ──────────────── */
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 320px;
+  max-width: 85vw;
+  background: var(--white);
+  /* Crisp, clean white background */
+  border-left: 1px solid var(--border);
+  z-index: 200;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 32px 24px;
+  box-shadow: -10px 0 40px rgba(26, 0, 40, 0.03);
+}
+
+.drawer.drawerOpen {
+  transform: translateX(0);
+}
+
+.drawerBrand {
+  padding-bottom: 24px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.drawerNav {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.drawerLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink-2);
+  padding: 16px 0;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-light);
+  transition: color 0.2s ease, padding-left 0.2s ease;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Subtle staggered link slide-in animation when menu displays */
+.drawerOpen .drawerLink {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease, color 0.2s ease, padding-left 0.2s ease;
+}
+
+.drawerLink:hover {
+  color: var(--pur);
+  padding-left: 4px;
+}
+
+.drawerArrow {
+  width: 16px;
+  height: 16px;
+  color: var(--subtle);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.drawerLink:hover .drawerArrow {
+  transform: translateX(3px);
+  color: var(--pur);
+}
+
+.drawerCta {
+  display: block;
+  background: var(--pur);
+  color: var(--white);
+  padding: 14px 24px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  margin-top: auto;
+  /* Always pins beautifully to the bottom of mobile viewport */
+  transition: background-color 0.2s ease;
+}
+
+.drawerCta:hover {
+  background: var(--pur2);
+}
+
+/* Luxury deep blur backdrop */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 0, 18, 0.2);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 150;
+  cursor: pointer;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ── RESPONSIVE OVERRIDES ────────────────── */
+@media (max-width: 1024px) {
+
+  .nav,
+  .cta {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .inner {
+    padding: 16px 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .inner {
+    padding: 14px 20px;
+  }
+}
