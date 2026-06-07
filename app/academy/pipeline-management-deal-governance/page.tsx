@@ -379,7 +379,7 @@ export default function PipelineManagementPage() {
                     <div className="sidebar-academy">
                         <div className="sidebar-enrol">
                             <p className="enrol-price">Corporate &amp; cohort pricing available</p>
-                            <Link href="/contact" className="enrol-cta-btn">Book This Course</Link>
+                            <Link href="/contact-us" className="enrol-cta-btn">Book This Course</Link>
                             <a href="/brochures/Course_02_Pipeline_Management_Deal_Governance.pdf" className="enrol-cta-sec-btn" download>Download Brochure</a>
                             <p className="enrol-note">Delivered for teams of 8–20. Contact us to discuss dates, custom delivery, or a pilot session.</p>
                         </div>
@@ -454,7 +454,7 @@ export default function PipelineManagementPage() {
                             <p>Contact us to discuss corporate bookings, cohort programmes, or custom delivery for your organisation.</p>
                         </div>
                         <div className="cta-banner-actions-course">
-                            <Link href="/contact" className="cta-btn-primary-course">Get in Touch</Link>
+                            <Link href="/contact-us" className="cta-btn-primary-course">Get in Touch</Link>
                             <Link href="/academy" className="cta-btn-sec-course">View All Courses</Link>
                         </div>
                     </div>

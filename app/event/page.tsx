@@ -19,7 +19,7 @@ export default function EventPage() {
                     <button className="tab-btn active font-semibold">
                         Past events <span className="tab-count">3</span>
                     </button>
-                    <Link href="/contact" className="tab-cta font-semibold">
+                    <Link href="/contact-us" className="tab-cta font-semibold">
                         Host an event with SNL &rarr;
                     </Link>
                 </div>

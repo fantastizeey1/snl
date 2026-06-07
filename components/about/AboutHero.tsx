@@ -34,7 +34,7 @@ export default function AboutHero() {
                 </div>
                 <div className="hero-actions">
                     <a href="#overview" className="hero-btn-primary">Our story</a>
-                    <Link href="/contact" className="hero-btn-ghost">Work with us</Link>
+                    <Link href="/contact-us" className="hero-btn-ghost">Work with us</Link>
                 </div>
             </div>
 
