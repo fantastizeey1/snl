@@ -1,6 +1,6 @@
-/* HeroSlider.module.css — Premium Rewrite */
+/* HeroSlider.module.css — L99 Premium Rewrite */
 
-.sr-only {
+.srOnly {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -16,9 +16,18 @@
 .heroSlider {
   position: relative;
   height: 100vh;
-  min-height: 600px;
+  min-height: 640px;
+  max-height: 900px;
   overflow: hidden;
-  background: var(--pur4);
+  background: #0f0018;
+}
+
+/* ── Slide track ── */
+/* Desktop: fills the section absolutely (slides layer inside it) */
+/* Mobile: position:relative, height set by active slide (see @media 767px) */
+.slideTrack {
+  position: absolute;
+  inset: 0;
 }
 
 /* ── Slides ── */
@@ -27,10 +36,10 @@
   inset: 0;
   display: flex;
   align-items: center;
-  padding: 0 80px;
-  gap: 40px;
+  padding: 0 80px 0 112px;
+  gap: 48px;
   opacity: 0;
-  transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
 }
 
@@ -39,7 +48,7 @@
   pointer-events: auto;
 }
 
-/* Slide background gradients */
+/* ── Slide backgrounds ── */
 .slideBg {
   position: absolute;
   inset: 0;
@@ -47,41 +56,55 @@
 }
 
 .s1 .slideBg {
-  background: linear-gradient(135deg, #1a0028 0%, #450065 60%, #2d0045 100%);
+  background: linear-gradient(135deg, #14001f 0%, #3a0058 55%, #200030 100%);
 }
 
 .s2 .slideBg {
-  background: linear-gradient(135deg, #0f001a 0%, #2a003e 55%, #450065 100%);
+  background: linear-gradient(135deg, #0a0012 0%, #220035 55%, #3a0055 100%);
 }
 
 .s3 .slideBg {
-  background: linear-gradient(135deg, #0a0010 0%, #1a0028 50%, #450065 100%);
+  background: linear-gradient(135deg, #080010 0%, #16001f 50%, #380052 100%);
 }
 
-.slideOverlay {
+/* Grain texture overlay */
+.slideGrain {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.25);
   z-index: 1;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  pointer-events: none;
 }
 
+/* Fine dot pattern — slide 1 only */
 .pattern {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background-image: radial-gradient(circle, rgba(200, 146, 58, 0.07) 1px, transparent 1px);
-  background-size: 36px 36px;
+  background-image: radial-gradient(circle, rgba(200, 146, 58, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
 }
 
-/* Decorative side line */
+/* Vignette */
+.slideOverlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, transparent 40%, rgba(0, 0, 0, 0.55) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Vertical accent line — left edge */
 .slideLine {
   position: absolute;
   left: 80px;
   top: 50%;
   transform: translateY(-50%);
   width: 1px;
-  height: 140px;
-  background: linear-gradient(to bottom, transparent, rgba(200, 146, 58, 0.5), transparent);
+  height: 160px;
+  background: linear-gradient(to bottom, transparent, rgba(200, 146, 58, 0.55), transparent);
   z-index: 2;
 }
 
@@ -90,38 +113,40 @@
   position: relative;
   z-index: 2;
   flex: 1;
-  max-width: 680px;
-  padding-left: 32px;
+  max-width: 700px;
 }
 
 .slideEyebrow {
-  font-size: 11px;
+  font-family: var(--mono);
+  font-size: 10.5px;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   display: flex;
   align-items: center;
   gap: 14px;
+  opacity: 0.9;
 }
 
 .slideEyebrow::before {
   content: '';
-  width: 28px;
+  width: 24px;
   height: 1px;
   background: var(--gold);
   flex-shrink: 0;
+  opacity: 0.7;
 }
 
 .slideContent h1 {
   font-family: var(--serif);
-  font-size: clamp(36px, 4.5vw, 72px);
+  font-size: clamp(38px, 4.8vw, 74px);
   font-weight: 700;
   color: var(--white);
-  line-height: 1.05;
-  letter-spacing: -2px;
-  margin-bottom: 24px;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  margin-bottom: 22px;
 }
 
 .slideContent h1 em {
@@ -130,33 +155,39 @@
 }
 
 .slideContent p {
-  font-size: 17px;
-  color: rgba(255, 255, 255, 0.6);
-  line-height: 1.75;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.52);
+  line-height: 1.78;
   margin-bottom: 40px;
-  max-width: 520px;
+  max-width: 500px;
+  font-weight: 300;
 }
 
 /* ── CTA buttons ── */
 .slideActions {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .btn {
-  padding: 15px 34px;
-  font-size: 13px;
+  padding: 13px 30px;
+  font-size: 11.5px;
   font-weight: 700;
   text-decoration: none;
-  display: inline-block;
-  letter-spacing: 0.06em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   cursor: pointer;
   border: 1.5px solid transparent;
-  transition: transform 0.18s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  transition: transform 0.18s ease, border-color 0.2s ease,
+    background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
   white-space: nowrap;
   border-radius: 1px;
+  font-family: var(--sans);
 }
 
 .btn-gold {
@@ -169,27 +200,29 @@
   transform: translateY(-2px);
   background: var(--goldM);
   border-color: var(--goldM);
+  box-shadow: 0 10px 28px rgba(200, 146, 58, 0.3);
 }
 
 .btn-ghost-w {
   background: transparent;
-  border-color: rgba(255, 255, 255, 0.3);
-  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .btn-ghost-w:hover {
-  border-color: rgba(255, 255, 255, 0.75);
-  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.6);
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .btn-purple {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
   color: var(--white);
 }
 
 .btn-purple:hover {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 /* ── Stats panel ── */
@@ -198,66 +231,70 @@
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   flex-shrink: 0;
 }
 
 .slideStatCard {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(200, 146, 58, 0.18);
-  border-left: 2px solid var(--gold);
-  padding: 22px 28px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(200, 146, 58, 0.15);
+  border-left: 2px solid rgba(200, 146, 58, 0.7);
+  padding: 20px 26px;
   border-radius: 1px;
-  min-width: 190px;
-  transition: background 0.2s;
+  min-width: 180px;
+  backdrop-filter: blur(4px);
+  transition: background 0.25s ease, border-left-color 0.25s ease;
 }
 
 .slideStatCard:hover {
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.06);
+  border-left-color: var(--gold);
 }
 
 .statNum {
   font-family: var(--serif);
-  font-size: 52px;
+  font-size: 48px;
   font-weight: 700;
   color: var(--goldM);
   line-height: 1;
   margin-bottom: 8px;
-  letter-spacing: -2px;
+  letter-spacing: -0.04em;
 }
 
 .statLabel {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.45);
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.38);
   line-height: 1.5;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
+  font-family: var(--mono);
+  text-transform: uppercase;
 }
 
-/* ── Slide counter (top-right) ── */
+/* ── Slide counter top-right ── */
 .slideCounter {
   position: absolute;
-  top: 40px;
+  top: 36px;
   right: 80px;
   z-index: 10;
   display: flex;
   align-items: center;
   gap: 10px;
   font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.3);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.25);
 }
 
 .slideCounterCurrent {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--gold);
 }
 
 .slideCounterBar {
-  width: 40px;
+  width: 36px;
   height: 1px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
   position: relative;
   overflow: hidden;
 }
@@ -271,7 +308,7 @@
   transition: width 0.5s ease;
 }
 
-/* ── Bottom controls — centered layout ── */
+/* ── Bottom controls ── */
 .sliderControls {
   position: absolute;
   bottom: 0;
@@ -281,30 +318,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 80px 40px;
-  gap: 32px;
+  padding: 0 80px 36px;
+  gap: 28px;
 }
 
-/* Left arrow */
 .sliderArrow {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border-radius: 1px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--white);
-  font-size: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 18px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease, color 0.2s ease;
   flex-shrink: 0;
 }
 
 .sliderArrow:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--white);
   transform: scale(1.05);
 }
 
@@ -313,22 +350,21 @@
   outline-offset: 3px;
 }
 
-/* Dots — centered between arrows */
 .sliderDots {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
 }
 
 .dot {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   border: none;
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.2);
   cursor: pointer;
   padding: 0;
-  transition: background 0.3s ease, transform 0.25s ease, width 0.3s ease;
+  transition: background 0.3s ease, width 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-radius 0.3s ease;
 }
 
 .dot:focus-visible {
@@ -338,112 +374,224 @@
 
 .dotActive {
   background: var(--gold);
-  transform: scale(1);
-  width: 24px;
+  width: 22px;
   border-radius: 3px;
 }
 
-/* ── Progress bar (very bottom) ── */
+/* ── Progress bar ── */
 .progressBar {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.08);
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.06);
   z-index: 11;
 }
 
 .progressFill {
   height: 100%;
-  background: var(--gold);
+  background: linear-gradient(90deg, var(--gold), var(--goldM));
   transition: width 5s linear;
 }
 
 /* ── Tablet ── */
-@media (max-width: 1023px) {
-  .heroSlider {
-    height: auto;
-    min-height: 520px;
-  }
-
+@media (max-width: 1199px) {
   .slide {
-    padding: 72px 40px 100px;
-    align-items: flex-start;
+    padding: 0 48px 0 80px;
   }
 
   .slideLine {
-    left: 40px;
+    left: 48px;
   }
 
-  .slideContent {
-    padding-left: 20px;
-    max-width: 100%;
+  .sliderControls {
+    padding: 0 48px 32px;
+  }
+
+  .slideCounter {
+    right: 48px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .heroSlider {
+    max-height: none;
+    min-height: 480px;
+    height: auto;
+  }
+
+  .slide {
+    padding: 88px 40px 100px 40px;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .slideLine {
+    display: none;
   }
 
   .slideRight {
     display: none;
   }
 
+  .slideContent {
+    max-width: 100%;
+    padding-left: 0;
+  }
+
   .slideContent h1 {
-    font-size: clamp(30px, 5vw, 48px);
+    font-size: clamp(32px, 5.5vw, 50px);
   }
 
   .sliderControls {
-    padding: 0 40px 32px;
+    padding: 0 40px 28px;
   }
 
   .slideCounter {
     right: 40px;
+    top: 28px;
   }
 }
 
-/* ── Mobile ── */
+/* ── Mobile — FIXED: container is a clip wrapper, active slide drives height ── */
 @media (max-width: 767px) {
+  /*
+   * Strategy: .heroSlider becomes a plain block (no fixed height).
+   * .slideTrack (added in TSX) is position:relative and drives height.
+   * Inactive slides are position:absolute so they have zero layout height.
+   * Active slide is position:relative so it sets the track's height.
+   * Controls and progress bar sit below the track in normal flow.
+   */
+
   .heroSlider {
     height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
-  .slide {
+  /* The slide track — on mobile becomes position:relative, no fixed height */
+  .slideTrack {
     position: relative;
-    padding: 60px 24px 96px;
-    min-height: 460px;
+    inset: auto;
+    width: 100%;
+  }
+
+  /* ALL slides: absolutely positioned, zero layout height */
+  .slide {
+    position: absolute;
+    inset: 0;
+    padding: 64px 24px 72px 24px;
     flex-direction: column;
     align-items: flex-start;
+    gap: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+    /* height driven by content via min-height trick below */
+    height: auto;
+    min-height: 100%;
+  }
+
+  /* Active slide: still absolute but visible — track gets min-height from it */
+  .slide.active {
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    /* ONLY active slide is relative → drives track height */
+    inset: auto;
+  }
+
+  /* Inactive slides re-overlay the track without adding height */
+  .slide:not(.active) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  /* Counter: absolute inside the slide itself */
+  .slideCounter {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 9px;
+  }
+
+  .slideCounterCurrent {
+    font-size: 12px;
   }
 
   .slideLine {
     display: none;
   }
 
+  .slideRight {
+    display: none;
+  }
+
   .slideContent {
+    max-width: 100%;
     padding-left: 0;
+  }
+
+  .slideContent h1 {
+    font-size: clamp(26px, 8vw, 38px);
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
+  }
+
+  .slideContent p {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 100%;
+  }
+
+  .slideEyebrow {
+    font-size: 9px;
+    margin-bottom: 16px;
+    letter-spacing: 0.18em;
   }
 
   .slideActions {
     flex-direction: column;
-    gap: 10px;
-  }
-
-  .btn {
-    text-align: center;
+    gap: 8px;
     width: 100%;
   }
 
+  .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 10.5px;
+  }
+
+  /* Controls: normal flow BELOW the track */
   .sliderControls {
-    padding: 0 24px 28px;
-    gap: 20px;
+    position: relative;
+    inset: auto;
+    padding: 16px 24px 20px;
+    gap: 18px;
+    background: #0f0018;
+    z-index: 10;
   }
 
   .sliderArrow {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
   }
 
-  .slideCounter {
-    right: 24px;
-    top: 24px;
+  /* Progress bar: normal flow at very bottom */
+  .progressBar {
+    position: relative;
+    inset: auto;
+    width: 100%;
   }
 }
 
